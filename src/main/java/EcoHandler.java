@@ -1,18 +1,19 @@
-
+//import bwapi.BWClient;
 
 /*This package issues eco related commands to gnombot.java. A future goal is to implement inter-package communication*/
 public class EcoHandler extends gnombot {
 
+    public int mins = game.self().minerals();
 
-        public int mins = game.self().minerals();
 
-        protected void idleWorkerMine(){
-            for (bwapi.Unit myunit : game.self().getUnits()){
-                if(myunit.canGather()){
-                    myunit.gather(game.getStaticMinerals().get(1));
-                }
+    protected void idleWorkerMine(){
+        for (bwapi.Unit myunit : game.self().getUnits()){
+            if(myunit.canGather()){
+                myunit.gather(game.getStaticMinerals().get(1));
             }
         }
+
+}
 
         /*
         for (bwapi.Unit myunit : game.self().getUnits() ) {
@@ -28,5 +29,6 @@ public class EcoHandler extends gnombot {
         }
     }
         */
+
 }
 
