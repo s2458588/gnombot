@@ -1,34 +1,30 @@
 //import bwapi.BWClient;
 
+import bwapi.UnitType;
+
 /*This package issues eco related commands to gnombot.java. A future goal is to implement inter-package communication*/
-public class EcoHandler extends gnombot {
+public class EcoHandler {
 
-    public int mins = game.self().minerals();
+    //public int mins = gnombot.game.self().minerals();
 
-
-    protected void idleWorkerMine(){
-        for (bwapi.Unit myunit : game.self().getUnits()){
-            if(myunit.canGather()){
-                myunit.gather(game.getStaticMinerals().get(1));
+    protected void workerTest() {
+        for (bwapi.Unit myunit : gnombot.game.self().getUnits()) {
+            //if this is a hatchery/lair/hive, make it train additional worker
+            if (myunit.getType() == UnitType.Zerg_Hatchery && gnombot.game.self().minerals() >= 50) {
+                myunit.train(UnitType.Zerg_Drone);
             }
         }
+    }
 
-}
-
-        /*
-        for (bwapi.Unit myunit : game.self().getUnits() ) {
-        //if this is a hatchery/lair/hive, make it train additional worker
-        if (myunit.getType() == UnitType.Zerg_Hatchery && mins >= 50) {
-            myunit.train(UnitType.Zerg_Drone);
-        }
-
-        else if (myUnit.getType().isWorker() && myUnit.isIdle()) {
-            myUnit.rightClick(game.getStaticMinerals().get(1).getPosition() );
-            //myUnit.gather(game.getStaticMinerals().get(1).getPosition() );
-            System.out.println(game.getStaticMinerals().get(1).getPosition());
+    protected void idleWorkerMine() {
+        for (bwapi.Unit myunit : gnombot.game.self().getUnits()) {
+            System.out.println(myunit);
+            if (myunit.getType() == UnitType.Zerg_Drone && myunit.isIdle()) {
+                System.out.println(myunit.getType() == UnitType.Zerg_Drone && myunit.isIdle());
+                myunit.gather(gnombot.game.getMinerals().get(1));
+                //System.out.println(myunit);
+            }
         }
     }
-        */
-
 }
 

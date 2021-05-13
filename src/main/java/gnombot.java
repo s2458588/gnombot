@@ -3,21 +3,24 @@ import bwapi.*;
 
 public class gnombot extends DefaultBWListener {
     public BWClient bwClient;
-    protected Game game;
+    public static Game game;
 
     EcoHandler eco = new EcoHandler();
-    //public int mins = game.self().minerals();
-    //public int pingas = game.self().gas();
+
+    public int mins;
+    //public int pingas;
 
     @Override
     public void onStart() {
         game = bwClient.getGame();
-        eco.idleWorkerMine();
+
     }
 
 
     @Override
     public void onFrame() {
+        eco.workerTest();
+        eco.idleWorkerMine();
     }
 
 
@@ -30,3 +33,4 @@ public class gnombot extends DefaultBWListener {
 
     }
 }
+
