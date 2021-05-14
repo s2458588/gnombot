@@ -9,7 +9,6 @@ public class EcoHandler {
 
     protected void workerTest() {
         for (bwapi.Unit myunit : gnombot.game.self().getUnits()) {
-            //if this is a hatchery/lair/hive, make it train additional worker
             if (myunit.getType() == UnitType.Zerg_Hatchery && gnombot.game.self().minerals() >= 50) {
                 myunit.train(UnitType.Zerg_Drone);
             }
@@ -17,12 +16,11 @@ public class EcoHandler {
     }
 
     protected void idleWorkerMine() {
+        int i = 0;
         for (bwapi.Unit myunit : gnombot.game.self().getUnits()) {
-            System.out.println(myunit);
             if (myunit.getType() == UnitType.Zerg_Drone && myunit.isIdle()) {
-                System.out.println(myunit.getType() == UnitType.Zerg_Drone && myunit.isIdle());
-                myunit.gather(gnombot.game.getMinerals().get(1));
-                //System.out.println(myunit);
+                i++;
+                myunit.gather(gnombot.game.getMinerals().get(i));
             }
         }
     }

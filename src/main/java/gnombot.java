@@ -1,13 +1,14 @@
 import bwapi.*;
-//import bwem.*;
+import bwem.*;
 
 public class gnombot extends DefaultBWListener {
     public BWClient bwClient;
     public static Game game;
 
     EcoHandler eco = new EcoHandler();
+    TechHandler tech = new TechHandler();
 
-    public int mins;
+    public static int mins;
     //public int pingas;
 
     @Override
@@ -21,7 +22,9 @@ public class gnombot extends DefaultBWListener {
     public void onFrame() {
         eco.workerTest();
         eco.idleWorkerMine();
+        tech.buildTechTree();
     }
+
 
 
 
@@ -29,6 +32,8 @@ public class gnombot extends DefaultBWListener {
         gnombot gnombot = new gnombot();
         gnombot.bwClient = new BWClient(gnombot);
         gnombot.bwClient.startGame();
+
+        mins = game.self().minerals();
 
 
     }
